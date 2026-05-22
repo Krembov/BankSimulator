@@ -18,43 +18,70 @@ const MIME = {
   '.woff2': 'font/woff2',
 };
 
+function safeEnd(res, status, data, contentType) {
+  try {
+    if (contentType) {
+      res.writeHead(status, { 'Content-Type': contentType });
+    } else {
+      res.writeHead(status);
+    }
+    res.end(data || '');
+  } catch {}
+}
+
 function serveFile(res, filePath, fallbackToIndex = false) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       if (err.code === 'ENOENT' && fallbackToIndex) {
         const idx = path.join(DIST_DIR, 'index.html');
         fs.readFile(idx, (e2, d2) => {
-          if (e2) { res.writeHead(500); res.end('Error'); return; }
-          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-          res.end(d2);
+          if (e2) { safeEnd(res, 500, 'Error'); return; }
+          safeEnd(res, 200, d2, 'text/html; charset=utf-8');
         });
       } else {
-        res.writeHead(404);
-        res.end('Not found');
+        safeEnd(res, 404, 'Not found');
       }
       return;
     }
     const ext = path.extname(filePath);
-    res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
-    res.end(data);
+    safeEnd(res, 200, data, MIME[ext] || 'application/octet-stream');
   });
 }
 
+function onRequestError(err) {
+  if (err.code === 'ECONNRESET' || err.code === 'EPIPE') return;
+  console.error('Request error:', err.message);
+}
+
 const srv = http.createServer((req, res) => {
-  let url = req.url === '/' ? '/index.html' : req.url;
-  // Handle SPA routing — any non-file route serves index.html
-  const hasExt = path.extname(url) !== '';
-  const filePath = path.join(DIST_DIR, url);
-  if (!hasExt) {
-    const idx = path.join(DIST_DIR, 'index.html');
-    fs.readFile(idx, (e, d) => {
-      if (e) { res.writeHead(500); res.end('Error'); return; }
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(d);
-    });
-    return;
+  res.on('error', onRequestError);
+  req.on('error', onRequestError);
+  try {
+    let url = req.url === '/' ? '/index.html' : req.url;
+    const hasExt = path.extname(url) !== '';
+    const filePath = path.join(DIST_DIR, url);
+    if (!hasExt) {
+      const idx = path.join(DIST_DIR, 'index.html');
+      fs.readFile(idx, (e, d) => {
+        if (e) { safeEnd(res, 500, 'Error'); return; }
+        safeEnd(res, 200, d, 'text/html; charset=utf-8');
+      });
+      return;
+    }
+    serveFile(res, filePath, true);
+  } catch (err) {
+    onRequestError(err);
+    try { res.writeHead(500); res.end('Server error'); } catch {}
   }
-  serveFile(res, filePath, true);
+});
+
+srv.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`  Port ${PORT} is already in use. Close the other process or change the port.`);
+    process.exit(1);
+  } else {
+    console.error('Server error:', err.message);
+  }
 });
 
 srv.listen(PORT, '0.0.0.0', () => {
@@ -66,11 +93,11 @@ srv.listen(PORT, '0.0.0.0', () => {
   console.log('');
   console.log('  Press Ctrl+C to stop');
   console.log('');
-
+  
   const cmd = process.platform === 'win32'
     ? `start "" "${url}"`
     : process.platform === 'darwin'
       ? `open "${url}"`
       : `xdg-open "${url}"`;
-  exec(cmd);
+  try { exec(cmd); } catch {}
 });
