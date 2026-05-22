@@ -3,3 +3,6 @@ dist
 BankSimulator.exe
 *.zip
 Bank Simulator/
+*.log
+tunnel.log
+lt.log
