@@ -60,7 +60,6 @@
   position: sticky;
   top: 0;
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
 }
 
 .stock-table tbody tr {

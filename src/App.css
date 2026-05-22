@@ -29,7 +29,6 @@
 
 .new-game-card {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 48px 40px;
