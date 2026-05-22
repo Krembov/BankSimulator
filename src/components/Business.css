@@ -1,0 +1,118 @@
+.business-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.5s ease;
+}
+
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.business-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.business-card:hover {
+  border-color: rgba(51, 65, 85, 0.7);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.business-card .b-type {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  background: var(--bg-glass);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-light);
+  display: inline-block;
+  width: fit-content;
+}
+
+.business-card .b-name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.business-card .b-cost {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.business-card .b-profit {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+.owned-biz-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.owned-biz-item {
+  background: rgba(10, 17, 33, 0.5);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.owned-biz-item:hover {
+  border-color: var(--border);
+}
+
+.owned-biz-item .b-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.owned-biz-item .b-left .b-owned-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.owned-biz-item .b-left .b-owned-details {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.owned-biz-item .b-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.owned-biz-item .b-right .b-owned-value {
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+}
+
+.owned-biz-item .b-right .b-owned-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}

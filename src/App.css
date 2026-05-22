@@ -1,0 +1,200 @@
+.app-layout {
+  display: flex;
+  width: 100%;
+}
+
+.app-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 32px;
+  min-height: 100vh;
+  max-width: calc(100vw - var(--sidebar-width));
+}
+
+.new-game-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.new-game-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 520px;
+  width: 90%;
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.6s ease;
+}
+
+.new-game-card .ng-logo {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 24px var(--accent-blue-glow);
+}
+
+.new-game-card h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--text-primary), #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.new-game-card .ng-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.new-game-card .features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.new-game-card .feature {
+  background: rgba(10, 17, 33, 0.5);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 10px;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.new-game-card .feature:hover {
+  border-color: var(--border);
+  transform: translateY(-2px);
+}
+
+.new-game-card .feature .f-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.new-game-card .feature .f-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+.new-game-card .start-btn {
+  padding: 14px 48px;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 24px var(--accent-blue-glow);
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.new-game-card .start-btn:hover {
+  box-shadow: 0 6px 32px var(--accent-blue-glow);
+  transform: translateY(-2px);
+}
+
+.new-game-card .load-btn {
+  margin-top: 16px;
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.new-game-card .load-btn:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-blue);
+}
+
+.new-game-card .ng-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+.win-screen {
+  text-align: center;
+}
+
+.win-screen .trophy {
+  font-size: 64px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.win-screen h1 {
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-amber), var(--accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.win-screen p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.win-screen .win-stat {
+  background: rgba(10, 17, 33, 0.5);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.win-screen .win-stat .ws-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+}
+
+.win-screen .win-stat .ws-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent-green);
+  font-family: 'JetBrains Mono', monospace;
+}

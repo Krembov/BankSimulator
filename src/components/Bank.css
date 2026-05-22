@@ -1,0 +1,206 @@
+.bank-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.5s ease;
+}
+
+.bank-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.bank-account-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bank-account-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.bank-account-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-blue), #60a5fa); }
+.bank-account-card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-green), #34d399); }
+.bank-account-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-amber), #fbbf24); }
+
+.bank-account-card:hover {
+  border-color: rgba(51, 65, 85, 0.7);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.bank-account-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.bank-account-card .card-header h3 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.bank-account-card .card-header .card-icon {
+  font-size: 22px;
+  opacity: 0.6;
+}
+
+.bank-account-card .balance {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.bank-account-card .rate {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.bank-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bank-actions .input-row {
+  display: flex;
+  gap: 6px;
+}
+
+.bank-actions input {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.cd-list, .loan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.cd-item, .loan-item {
+  background: rgba(10, 17, 33, 0.5);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  border: 1px solid var(--border-light);
+  transition: border-color 0.2s;
+}
+
+.cd-item:hover, .loan-item:hover {
+  border-color: var(--border);
+}
+
+.cd-info, .loan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cd-amount {
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+
+.cd-days {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.liquid-assets-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.liquid-assets-card .la-total {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-family: 'JetBrains Mono', monospace;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.liquid-assets-card .la-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.liquid-assets-card .la-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.liquid-assets-card .la-tip {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 8px 10px;
+  background: var(--bg-glass);
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+}
+
+.term-selector {
+  display: flex;
+  gap: 4px;
+}
+
+.term-btn {
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  transition: all 0.2s;
+}
+
+.term-btn:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+}
+
+.term-btn.active {
+  background: var(--accent-blue-glow);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}

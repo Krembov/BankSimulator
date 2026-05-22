@@ -1,0 +1,121 @@
+.vehicles-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.5s ease;
+}
+
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.vehicle-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vehicle-card:hover {
+  border-color: rgba(51, 65, 85, 0.7);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.vehicle-card .v-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.vehicle-card .v-classic-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.vehicle-card .v-name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.vehicle-card .v-price {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.vehicle-card .v-details {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.owned-vehicles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.owned-v-item {
+  background: rgba(10, 17, 33, 0.5);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.owned-v-item:hover {
+  border-color: var(--border);
+}
+
+.owned-v-item .v-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.owned-v-item .v-left .v-owned-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.owned-v-item .v-left .v-owned-details {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.owned-v-item .v-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.owned-v-item .v-right .v-owned-value {
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+}
+
+.owned-v-item .v-right .v-owned-change {
+  font-size: 11px;
+  font-weight: 600;
+}

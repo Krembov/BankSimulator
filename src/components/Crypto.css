@@ -1,0 +1,8 @@
+.crypto-view .stocks-header {
+  margin-bottom: 24px;
+}
+
+.crypto-view .stock-table th:nth-child(3),
+.crypto-view .stock-table td:nth-child(3) {
+  text-align: right;
+}
